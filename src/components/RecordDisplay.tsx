@@ -55,9 +55,9 @@ const RecordDisplay: React.FC<DisplayPropType> = ({ outputText, recording, data,
                     <div className="RecordDisplay-Time">
                         {element[0]}
                     </div>
-                    <div className="RecordDisplay-Content">
+                    <p className="RecordDisplay-Content">
                         {element[1]}
-                    </div>
+                    </p>
                 </li>
             })
             }

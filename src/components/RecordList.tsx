@@ -58,11 +58,18 @@ const RecordList: React.FC<RecordListPropType> = ({ selectedItem, setSelectedIte
 
     return (
         <RecordListBox>
-            <section>
-                <button onClick={openItem}>
+            <section className="RecordList-Buttons">
+                <button
+                    className="RecordList-Add"
+                    onClick={() => {setIsAddModalOpen(true)}}
+                    ></button>
+                Record List
+                <button
+                    className="RecordList-Open"
+                    onClick={openItem}
+                    >
                     open
                 </button>
-                <button onClick={() => {setIsAddModalOpen(true)}}>plus</button>
                 <AddModal
                     isOpen={isAddModalOpen}
                     setIsOpen={setIsAddModalOpen}
@@ -74,14 +81,14 @@ const RecordList: React.FC<RecordListPropType> = ({ selectedItem, setSelectedIte
                 onClick={onClickItem}
                 >
             {
-                list.map((element) => {
+                list.map((element, index) => {
                     const thisId = 'Item_' + element.id.toString();
                     return <li
                         className={selectedItem === thisId ? 'RecordItem-Selected' : ''}
                         id={thisId}
                         key={element.id}
                         >
-                        {element.name}
+                        {index}. {element.name}
                     </li>
                 })
             }

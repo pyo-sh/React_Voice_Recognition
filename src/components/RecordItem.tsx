@@ -59,13 +59,16 @@ const RecordItem: React.FC<RecordItemPropType> = ({ selectedItem }) => {
 
     return (
         <RecordItemBox>
-            <section>
+            <section className="RecordItem-Header">
+                <h2 className="RecordItem-Title">
+                    {title}
+                </h2>
                 {recording 
-                ?   <button onClick={endRecording}>Stop</button>
-                :   <button onClick={startRecording}>Record</button>
+                ?   <button className="RecordItem-Button Stop" onClick={endRecording}>Stop</button>
+                :   <button className="RecordItem-Button" onClick={startRecording}>Record</button>
                 }
-                {recordedDate}
             </section>
+            <div className="RecordItem-Date">{recordedDate}</div>
             <RecordDisplay
                 outputText={outputText}
                 recording={recording}
