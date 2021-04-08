@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import DisplayBox from 'styles/DisplayBox';
+import RecordDisplayBox from 'styles/RecordDisplayBox';
 
 type DisplayPropType = {
     outputText: string,
     recording: boolean,
+    data: Array<any>,
+    setData: React.Dispatch<React.SetStateAction<any[]>>,
+    recordedDate: string,
+    setRecordedDate: React.Dispatch<React.SetStateAction<string>>,
 }
 
-const Display: React.FC<DisplayPropType> = ({ outputText, recording }) => {
-    const [recordedDate, setRecordedDate] = useState<string>('');
+const RecordDisplay: React.FC<DisplayPropType> = ({ outputText, recording, data, setData, recordedDate, setRecordedDate }) => {
     const [recordedTime, setRecordedTime] = useState<number>(0);
-    const [data, setData] = useState<Array<any>>([]);
 
     // record speech
     useEffect(() => {
@@ -39,22 +41,28 @@ const Display: React.FC<DisplayPropType> = ({ outputText, recording }) => {
     useEffect(() => {
         if (recording) {
             const nowDate = new Date();
-            setRecordedDate(nowDate.toString());
+            setRecordedDate(nowDate.toString().slice(0, 24));
             setRecordedTime(nowDate.getTime());
             setData([]);
         }
     }, [recording])
 
     return (
-        <DisplayBox>
-            {recordedDate}
+        <RecordDisplayBox>
             {
             data.map((element, index) => {
-                return <h2 key={index}>{element[0]}  {element[1]}</h2>
+                return <li className="RecordDisplay-List" key={index}>
+                    <div className="RecordDisplay-Time">
+                        {element[0]}
+                    </div>
+                    <div className="RecordDisplay-Content">
+                        {element[1]}
+                    </div>
+                </li>
             })
             }
-        </DisplayBox>
+        </RecordDisplayBox>
     );
 }
 
-export default Display;
+export default RecordDisplay;

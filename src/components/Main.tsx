@@ -1,34 +1,28 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import MainBox from 'styles/MainBox';
-import Control from 'components/Control';
-import Display from 'components/Display';
-import { useRecognizer } from 'hooks/useRecognizer';
+import RecordList from 'components/RecordList';
+import RecordItem from 'components/RecordItem';
 
 const Main: React.FC = () => {
-    const [outputText, startRecognizer, endRecognizer, error] = useRecognizer();
-    const [recording, setRecording] = useState<boolean>(false);
-
-    // Error 처리
-    useEffect(() => {
-        if(error) {
-            alert(error);
-        }
-    }, [error])
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [selectedItem, setSelectedItem] = useState<string>('');
     
     return (
         <MainBox>
-            <Control
-                startRecognizer={startRecognizer}
-                endRecognizer={endRecognizer}
-                recording={recording}
-                setRecording={setRecording}
+            <RecordList
+                selectedItem={selectedItem}
+                setSelectedItem={setSelectedItem}
+                setIsOpen={setIsOpen}
                 />
-            <Display
-                outputText={outputText}
-                recording={recording}
-                />
+            <section className="Main-Record">
+                {isOpen &&
+                    <RecordItem
+                        selectedItem={selectedItem}
+                        />
+                }
+            </section>
         </MainBox>
-    )
+    );
 }
 
 
