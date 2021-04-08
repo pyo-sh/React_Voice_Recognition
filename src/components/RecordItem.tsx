@@ -74,7 +74,6 @@ const RecordItem: React.FC<RecordItemPropType> = ({ selectedItem }) => {
                 recording={recording}
                 data={contents}
                 setData={setContents}
-                recordedDate={recordedDate}
                 setRecordedDate={setRecordedDate}
                 />
         </RecordItemBox>

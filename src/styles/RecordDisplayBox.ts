@@ -27,6 +27,8 @@ const RecordDisplayBox = styled.ul`
 
     .RecordDisplay-Content {
         margin: 0;
+        display: flex;
+        flex-wrap: wrap;
     }
 `;
 

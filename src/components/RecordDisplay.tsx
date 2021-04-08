@@ -6,16 +6,15 @@ type DisplayPropType = {
     recording: boolean,
     data: Array<any>,
     setData: React.Dispatch<React.SetStateAction<any[]>>,
-    recordedDate: string,
     setRecordedDate: React.Dispatch<React.SetStateAction<string>>,
 }
 
-const RecordDisplay: React.FC<DisplayPropType> = ({ outputText, recording, data, setData, recordedDate, setRecordedDate }) => {
+const RecordDisplay: React.FC<DisplayPropType> = ({ outputText, recording, data, setData, setRecordedDate }) => {
     const [recordedTime, setRecordedTime] = useState<number>(0);
 
     // record speech
     useEffect(() => {
-        if (outputText){
+        if (outputText && recording){
             let time_diff = Math.floor((new Date().getTime() - recordedTime) / 1000);
             // 시
             const hours = Math.floor(time_diff / 3600);

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 const RecordItemBox = styled.div`
     width: 100%;
+    max-width: 500px;
     min-height: 100px;
     padding: 20px 0;
     margin: 0;
