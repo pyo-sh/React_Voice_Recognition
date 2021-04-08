@@ -1,70 +1,48 @@
-# Getting Started with Create React App
+# Voice Recognition in JavaScript
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Speech Recognition 을 통해 Vocie Recognition 을 구현하게 되었습니다.
 
-## Available Scripts
+### Reference
 
-In the project directory, you can run:
+[SpeechRecognition - MDN](https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition)
 
-### `yarn start`
+### Implementation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+[useRecognition](https://github.com/pyo-sh/React_Voice_Recognition/blob/master/src/hooks/useRecognizer.ts)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `yarn test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
+<center>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<h2>Project</h2>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![캡처](https://user-images.githubusercontent.com/55688122/114011263-002bec80-98a0-11eb-8862-d4bd4c338f7a.PNG)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+</center>
 
-### `yarn eject`
+### About
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+시간에 제한 없이 자신의 음성을 프로그램이 자동으로 글을 인식하여 이를 기록하는 프로그램입니다.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+기록한 내용들에 대한 리스트를 볼 수 있고 이를 통해 자신이 어떤 말을 했는지에 대한 기록 및 열람을 할 수 있습니다.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Starting Project
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```
+npm start
+```
 
-## Learn More
+### Review
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Speech Recognition 시스템이 장기 대기를 하게 되면 에러 반환 및 종료를 하게 되어서 문제였다.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+현재 프로젝트에서는 시간의 제한이 없는 만큼 사용자가 말할 때까지 대기해야 하기 때문이다.
 
-### Code Splitting
+대기시간에 관한 설정을 하는게 없었기 때문에 이를 내부에서 Stop(), Start() 를 반복하는 방법으로 해결했었다.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+하지만 이 상황에서 Promise 를 사용하여도 정지 및 시작이 되지 않았기 때문에 setTimeout을 사용하였다.
 
-### Analyzing the Bundle Size
+이 부분이 마음에 걸리고 대기시간에 관한 설정을 하는 방법을 찾아서 할 수 있었으면 좋겠다.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+또한 후에는 Discord.js 를 통해 Discord 통화의 음성을 가져오고 다른사람 과의 통화 내역도 저장할 수 있는 기능을 만들 수 있으면 좋겠다.
